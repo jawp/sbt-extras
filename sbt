@@ -238,7 +238,7 @@ is_cygwin () {
   local os=$(uname -a)
   case "$os" in
     CYGWIN*) echo "yes" ;;
-    *)  return echo "no" ;;
+    *) echo "no" ;;
   esac
 }
 
