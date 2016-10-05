@@ -4,5 +4,8 @@ language: c
 git:
   depth: 3
 
-script: ./bin/run-tests --tap ./test
+script:
+  - pwd
+  - find .
+  - ./bin/run-tests --tap ./test
 
