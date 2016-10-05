@@ -9,6 +9,6 @@ cd "$(dirname "$0")/.."
 bats=""
 
 [[ $# -gt 0   ]] || set -- ./test
-[[ -x "$bats" ]] || bats="./bats/libexec/bats"
+[[ -x "$bats" ]] || bats="./bats/bin/bats"
 [[ -x "$bats" ]] || git clone -b github-for-windows-compat --depth=1 https://github.com/LeahCim/bats.git bats
 [[ -x "$bats" ]] && "$bats" "$@"
