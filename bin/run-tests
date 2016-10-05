@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-
+set -x
 cd "$(dirname "$0")/.."
 
 # The version of bats in brew only works if it's installed --HEAD
