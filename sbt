@@ -244,7 +244,7 @@ is_cygwin () {
 
 jar_file () {
   if [[ "$(is_cygwin)" == "yes" ]]; then
-    echo "$(cygpath '$sbt_launch_dir/$1/sbt-launch.jar')"
+    echo "$(cygpath -w $sbt_launch_dir/"$1"/sbt-launch.jar)"
   else
     echo "$sbt_launch_dir/$1/sbt-launch.jar"
   fi
