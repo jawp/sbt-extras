@@ -1,3 +1,4 @@
 os: Windows Server 2012 R2
+build: off
 test_script:
 - C:\cygwin64\bin\bash.exe -l -c "./bin/run-tests --tap ./test"
