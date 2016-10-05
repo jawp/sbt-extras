@@ -4,4 +4,5 @@ clone_folder: c:\sbt-extras
 install:
   - set PATH=C:\cygwin64\bin;%PATH%
 test_script:
+  - bash.exe -l -c "cd /cygdrive/c/sbt-extras/ && ./bin/replaceLinksWithContent.sh"
   - bash.exe -l -c "cd /cygdrive/c/sbt-extras/ && ./bin/run-tests --tap ./test"
