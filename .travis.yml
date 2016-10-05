@@ -6,8 +6,3 @@ git:
 
 script: ./bin/run-tests --tap ./test
 
-notifications:
-  email:
-    on_success: never
-  webhooks:
-    urls: https://webhooks.gitter.im/e/45b53a6d489dbced3f7e
