@@ -5,4 +5,5 @@ install:
   - set PATH=C:\cygwin64\bin;%PATH%
 test_script:
   - bash.exe -l -c "cd /cygdrive/c/sbt-extras/ && ./bin/replaceLinksWithContent.sh"
+  - bash.exe -l -c "cd /cygdrive/c/sbt-extras/ && for i in `find . -type f| grep -v \.git`; do file $i; done"
   - bash.exe -l -c "cd /cygdrive/c/sbt-extras/ && ./bin/run-tests --tap ./test"
