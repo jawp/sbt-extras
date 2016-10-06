@@ -124,11 +124,10 @@ assert_failure() {
 
 stdin_or_args () { if [[ $# -eq 0 ]]; then cat - ; else echo "$@"; fi; }
 normalize_paths () {
-  echo "debug"
-  cygpath -w "$TEST_ROOT" | sed 's/\\/\\\\/g' | sed 's/:/\\:/g'
   stdin_or_args "$@" | \
     sed "s:$(cygpath -w "$TEST_ROOT" | sed 's/\\/\\\\/g' | sed 's/:/\\:/g'):\$ROOT:g" | \
-    sed "s:$HOME:\$ROOT:g"
+    sed "s:$HOME:\$ROOT:g" | \
+    sed 's/\\/\//g'
 }
 
 mkdir_and_touch () { mkdir -p "$(dirname "$1")" && touch "$1"; }
