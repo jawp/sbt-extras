@@ -127,7 +127,8 @@ normalize_paths () {
   stdin_or_args "$@" | \
     sed "s:$(cygpath -w "$TEST_ROOT" | sed 's/\\/\\\\/g' | sed 's/:/\\:/g'):\$ROOT:g" | \
     sed "s:$HOME:\$ROOT:g" | \
-    sed 's/\\/\//g'
+    sed 's/\\/\//g' | \
+    tr -d '\r'
 }
 
 mkdir_and_touch () { mkdir -p "$(dirname "$1")" && touch "$1"; }
