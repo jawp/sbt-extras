@@ -123,12 +123,25 @@ assert_failure() {
 }
 
 stdin_or_args () { if [[ $# -eq 0 ]]; then cat - ; else echo "$@"; fi; }
+
+is_cygwin () [[ "$(uname -a)" == "CYGWIN"* ]]
+
 normalize_paths () {
+  is_cygwin && normalize_paths_cygwin || normalize_paths_linux
+}
+
+normalize_paths_cygwin () {
   stdin_or_args "$@" | \
     sed "s:$(cygpath -w "$TEST_ROOT" | sed 's/\\/\\\\/g' | sed 's/:/\\:/g'):\$ROOT:g" | \
-    sed "s:$HOME:\$ROOT:g" | \
+    sed "s:$(cygpath -w "$HOME" | sed 's/\\/\\\\/g' | sed 's/:/\\:/g'):\$ROOT:g" | \
     sed 's/\\/\//g' | \
     tr -d '\r'
+}
+
+normalize_paths_linux () {
+  stdin_or_args "$@" | \
+    sed "s:$TEST_ROOT:\$ROOT:g" | \
+    sed "s:$HOME:\$ROOT:g"
 }
 
 mkdir_and_touch () { mkdir -p "$(dirname "$1")" && touch "$1"; }
