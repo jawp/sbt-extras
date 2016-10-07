@@ -2,14 +2,7 @@
 #
 cd "$(dirname "$0")/.."
 
-is_cygwin () {
-  local os=$(uname -a)
-  case "$os" in
-    CYGWIN*) return 0 ;;
-    *) return 1 ;;
-  esac
-}
-
+is_cygwin () [[ "$(uname -a)" == "CYGWIN"* ]]
 is_cygwin && bin/relinkSymlinks.sh
 
 # The version of bats in brew only works if it's installed --HEAD
