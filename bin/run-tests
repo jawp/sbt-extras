@@ -12,6 +12,7 @@ bats=""
 
 [[ $# -gt 0   ]] || set -- ./test
 [[ -x "$bats" ]] || bats="./bats/bin/bats"
-[[ -x "$bats" ]] || git clone --depth=1 https://github.com/sstephenson/bats.git bats
+git config --list
+[[ -x "$bats" ]] || git clone -c core.sylinks=true --depth=1 https://github.com/sstephenson/bats.git bats
 #is_cygwin && bin/relinkSymlinks.sh bats
 [[ -x "$bats" ]] && "$bats" "$@"
